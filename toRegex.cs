@@ -1,6 +1,6 @@
 using System;
 
-public namespace toRegex {
+public class toRegex {
     public void Main() {
     Console.WriteLine("Coming soon");
     }
