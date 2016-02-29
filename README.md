@@ -1,2 +1,2 @@
 # toRegex
-NPROGX: Coming Soon
+Coming Soon as part of NPROGX.
