@@ -2,6 +2,6 @@ using System;
 
 public class toRegex {
     public void Main() {
-    Console.WriteLine("Coming soon");
+    Console.WriteLine("Coming as part of NPROGX);
     }
 }
