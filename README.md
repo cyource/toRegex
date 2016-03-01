@@ -1,2 +1,2 @@
 # toRegex
-Coming Soon as part of NPROGX.
+A C# Regex Pattern Compiler for text. Regex = C# Variation.
