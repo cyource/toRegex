@@ -27,7 +27,7 @@ namespace cyource_console_project
 							chars.Insert(i, '\\');
 							chars.Insert(i+1,regexes[k]);
 						} else if (j>0 && j <= chars.Count) {
-							chars.insert(chars[j-1], '\') 
+							chars.Insert(chars[j-1], '\');
 						}
 					}
 				}
