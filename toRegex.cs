@@ -11,7 +11,6 @@ namespace toRegex
 			{
 
 				string input;
-				//while (true) {
 				input = Console.ReadLine();
 				List<char>chars = new List<char>();
 				List<char>chars2 = new List<char>();
