@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+//using System.Linq;
 	
+//By Manas Rawat (cyource)
+
 namespace toRegex
 {
 
@@ -10,8 +13,7 @@ namespace toRegex
 			public static void Main(string[]args)
 			{
 
-				string input;
-				input = Console.ReadLine();
+				string input = Console.ReadLine();
 				
 				List<char>chars = new List<char>();
 				
@@ -61,11 +63,27 @@ namespace toRegex
 									nm.Add(xyz[k]);
 								} 
 							}	//5e
-								
-							String accepted = "[" + string.Join("",mn.ToArray()) + "]";
-							String rejected = "[^" + string.Join("",nm.ToArray()) + "]";
-
-							String ar = Regex.Replace(string.Join("",splits.ToArray()).ToLower(),@"[a-z]","");
+							
+							String accepted;
+							String rejected;
+							if (mn.Count.Equals(0)) {
+								accepted = "";
+							} else {
+								accepted = "[" + string.Join("",mn.ToArray()) + "]";
+							}
+							
+							if (nm.Count.Equals(0)) {
+								rejected = "";
+							} else {
+								rejected = "[^" + string.Join("",nm.ToArray()) + "]";
+							}
+							
+							String ar;
+							/*if (!string.Join("",splits.ToArray()).Contains(" ") || !string.Join("",splits.ToArray()).Any(char.IsDigit)){
+								ar = "";
+							} else {*/			
+								ar = Regex.Replace(string.Join("",splits.ToArray()).ToLower(),@"[a-z]","");
+							//}
 								
 							strings.Add(accepted + ar);
 							strings2.Add(rejected + ar);
@@ -88,11 +106,26 @@ namespace toRegex
 					} //1e
 						
 				}	
-					Console.WriteLine(string.Join("",listslist[0].ToArray()));
-					Console.WriteLine(string.Join("",listslist[1].ToArray()));
-					Console.WriteLine("@\"" + string.Join("",chars.ToArray()) + "\"");
+				
+					string prex = string.Join("",listslist[0].ToArray()); //TO-FIX
+					string prex2 = string.Join("",listslist[1].ToArray());
+				
+					Console.WriteLine(dashes(prex) + prex + "\n" + dashes(prex2) + prex2);
+					string regex = "@\"" + string.Join("",chars.ToArray()) + "\"";
+					Console.WriteLine(dashes(regex) + regex);
 
 		
 			}
+		
+		static string dashes(string dashee){
+			
+			string dashes = "";
+			foreach(char c in dashee){
+				dashes+="-";
+			}
+			dashes+="\n";
+			return dashes;
+			
+		}
 	}
 }
