@@ -92,9 +92,9 @@ namespace toRegex
 							chars.Insert(i, '\\');
 							chars.Insert(i+1,regexes[j]);
 							
-							if (i+2 < chars.Count && Regex.IsMatch(chars[i+2].ToString().ToLower(), @"[a-z]|\\")){
+							if (i+2 < chars.Count && Regex.IsMatch(chars[i+2].ToString().ToLower(), @"(?![\d|\s]).")) {
 								chars.Insert(i+2, '/');
-							} 
+							}
 							
 						} //4e
 						
@@ -110,6 +110,7 @@ namespace toRegex
 				
 				string regex = "@\"" + string.Join("",chars.ToArray()) + "\"";
 				Console.WriteLine(dashes(regex) + regex);
+					
 				}
 			}
 		
