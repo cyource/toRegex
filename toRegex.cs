@@ -92,8 +92,8 @@ namespace toRegex
 							chars.Insert(i, '\\');
 							chars.Insert(i+1,regexes[j]);
 							
-							if (i+2 < chars.Count && Regex.IsMatch(chars[i+2].ToString().ToLower(), @"[a-z]")){
-								chars.Insert(i+2, '\\');
+							if (i+2 < chars.Count && Regex.IsMatch(chars[i+2].ToString().ToLower(), @"[a-z]|\\")){
+								chars.Insert(i+2, '/');
 							} 
 							
 						} //4e
