@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-//using System.Linq;
+using System.Linq;
 	
 //By Manas Rawat (cyource)
 
@@ -13,11 +13,11 @@ namespace toRegex
 			public static void Main(string[]args)
 			{
 
+				while(true){
 				string input = Console.ReadLine();
-				
 				List<char>chars = new List<char>();
-				
 				List<List<string>> listslist = new List<List<string>>();
+				bool validity = false;
 		
 				foreach (char c in input){
 					chars.Add(c);
@@ -41,7 +41,7 @@ namespace toRegex
 							} //3e
 							
 							string chara = (string.Join("",chars.ToArray()).ToLower());
-							int count = chara.Split(' ').Length - 1;
+							int count = chara.Count(f => f == ' ');
 							
 							for (int l = 0; l <= count; l++) { //4s
 								
@@ -59,31 +59,27 @@ namespace toRegex
 							for (int k = 0; k < 26; k++){ //5s
 								if (splits.Contains(xyz[k])){
 									mn.Add(xyz[k]);
-								} else if (splits.Contains(xyz[k]).Equals(false)){
+								} else {
 									nm.Add(xyz[k]);
 								} 
 							}	//5e
 							
-							String accepted;
-							String rejected;
-							if (mn.Count.Equals(0)) {
-								accepted = "";
-							} else {
+							String accepted = "";
+							String rejected = "";							
+							String ar = "";
+								
+							if (mn.Any())  {
 								accepted = "[" + string.Join("",mn.ToArray()) + "]";
+								validity = true;
 							}
 							
-							if (nm.Count.Equals(0)) {
-								rejected = "";
-							} else {
+							if (nm.Any()) {
 								rejected = "[^" + string.Join("",nm.ToArray()) + "]";
 							}
-							
-							String ar;
-							/*if (!string.Join("",splits.ToArray()).Contains(" ") || !string.Join("",splits.ToArray()).Any(char.IsDigit)){
-								ar = "";
-							} else {*/			
+
+							if (string.Join("",splits.ToArray()).Any(char.IsDigit)) {		
 								ar = Regex.Replace(string.Join("",splits.ToArray()).ToLower(),@"[a-z]","");
-							//}
+							}
 								
 							strings.Add(accepted + ar);
 							strings2.Add(rejected + ar);
@@ -96,28 +92,28 @@ namespace toRegex
 							chars.Insert(i, '\\');
 							chars.Insert(i+1,regexes[j]);
 							
-							if (i+3 < chars.Count && Regex.IsMatch(chars[i+2].ToString().ToLower(), @"[a-z]") 
-								&& Regex.IsMatch(chars[i+2].ToString(), @"\d|\s").Equals(false)){
+							if (i+2 < chars.Count && Regex.IsMatch(chars[i+2].ToString().ToLower(), @"[a-z]")){
 								chars.Insert(i+2, '\\');
-								chars.Insert(i+3, '\\');
-							}
+							} 
+							
 						} //4e
 						
 					} //1e
 						
 				}	
 				
-					string prex = string.Join("",listslist[0].ToArray()); //TO-FIX
+				if (validity){
+					string prex = string.Join("",listslist[0].ToArray()); 
 					string prex2 = string.Join("",listslist[1].ToArray());
-				
 					Console.WriteLine(dashes(prex) + prex + "\n" + dashes(prex2) + prex2);
-					string regex = "@\"" + string.Join("",chars.ToArray()) + "\"";
-					Console.WriteLine(dashes(regex) + regex);
-
-		
+				}
+				
+				string regex = "@\"" + string.Join("",chars.ToArray()) + "\"";
+				Console.WriteLine(dashes(regex) + regex);
+				}
 			}
 		
-		static string dashes(string dashee){
+		static string dashes(string dashee) {
 			
 			string dashes = "";
 			foreach(char c in dashee){
